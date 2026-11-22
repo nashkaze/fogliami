@@ -11,11 +11,11 @@ const CFG = {
   // Dataset del Comune (CKAN). Gli URL di download vengono risolti a runtime
   // con package_show; quelli qui sotto sono il ripiego se la risoluzione fallisce.
   pkg: {
-    nil:      {id: 'ds964-nil-vigenti-pgt-2030', fmt: 'GeoJSON', local: 'data/nil.geojson', url: '/dataset/e8e765fc-d882-40b8-95d8-16ff3d39eb7c/resource/9c4e0776-56fc-4f3d-8a90-f4992a3be426/download/ds964_nil_wm.geojson'},
+    nil:      {id: 'ds964-nil-vigenti-pgt-2030', fmt: 'GeoJSON', local: 'data/nil.geojson', localFirst: true, url: '/dataset/e8e765fc-d882-40b8-95d8-16ff3d39eb7c/resource/9c4e0776-56fc-4f3d-8a90-f4992a3be426/download/ds964_nil_wm.geojson'},
     parchi:   {id: 'ds89_infogeo_parchi_giardini_localizzazione_', fmt: 'GeoJSON', local: 'data/parchi.json', localFirst: true, url: '/dataset/8920bbea-fe1a-4061-8c6e-0746d95316c1/resource/7cba11e7-c236-49a7-aef4-4db6329eec5d/download/parchi.geojson'},
-    orti:     {id: 'ds2186-infogeo-orti-urbani-localizzazione', fmt: 'GeoJSON', local: 'data/orti.geojson', url: '/dataset/8f85ebf9-73c7-45cc-a428-66d56b7b46a4/resource/3c052ee5-47d8-4902-b2be-85e053a4ed41/download/ds2186_aree_orti_comunali.geojson'},
-    giardini: {id: 'ds2187-infogeo-giardini-condivisi-localizzazione', fmt: 'GeoJSON', local: 'data/giardini.geojson', url: '/dataset/57c2441d-69f1-42b9-a83d-41d8b98ddcbd/resource/df9a8989-51e2-4927-aef3-0487a80dc75e/download/ds2187_giardini_condivisi.geojson'},
-    monum:    {id: 'ds2489-gli-alberi-monumentali-nel-comune-di-milano', fmt: 'GeoJSON', local: 'data/monumentali.geojson', url: '/dataset/4e405e99-895e-486c-be70-f8c759e47b31/resource/ea95b273-0a6d-444a-a1fb-b83eae24ce4d/download/alberi_monumentali_031123_final.geojson'}
+    orti:     {id: 'ds2186-infogeo-orti-urbani-localizzazione', fmt: 'GeoJSON', local: 'data/orti.geojson', localFirst: true, url: '/dataset/8f85ebf9-73c7-45cc-a428-66d56b7b46a4/resource/3c052ee5-47d8-4902-b2be-85e053a4ed41/download/ds2186_aree_orti_comunali.geojson'},
+    giardini: {id: 'ds2187-infogeo-giardini-condivisi-localizzazione', fmt: 'GeoJSON', local: 'data/giardini.geojson', localFirst: true, url: '/dataset/57c2441d-69f1-42b9-a83d-41d8b98ddcbd/resource/df9a8989-51e2-4927-aef3-0487a80dc75e/download/ds2187_giardini_condivisi.geojson'},
+    monum:    {id: 'ds2489-gli-alberi-monumentali-nel-comune-di-milano', fmt: 'GeoJSON', local: 'data/monumentali.geojson', localFirst: true, url: '/dataset/4e405e99-895e-486c-be70-f8c759e47b31/resource/ea95b273-0a6d-444a-a1fb-b83eae24ce4d/download/alberi_monumentali_031123_final.geojson'}
   },
   // Risorse interrogate via DataStore (API SQL / search)
   rs: {
@@ -25,7 +25,7 @@ const CFG = {
     tipo:  'bd55cd57-4dd7-4d72-b182-de4f4b7de8c6'  // ds339 aree verdi per tipologia e affidatario (2014)
   },
   // ALBERI. Stato al 16/11/2026: il dataset ds2484 risulta ritirato dal portale
-  // (pagina 404, API 403). La pagina lo cerca comunque a ogni avvio.
+  // (pagina 404, API 403). La pagina lo cerca solo se la copia nel sito non si carica.
   treesPkg: ['ds2484_infogeo_alberi_localizzazione', '609a5892-f5fa-4fa3-98e3-eab9ebeba5b8'],
   // Vecchio geoportale ArcGIS (livello "Alberi"): al 16/11/2026 il server non risponde.
   // Tentativo lasciato in catena perché costa poco. NON TESTATO: i campi sono dedotti a runtime.

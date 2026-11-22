@@ -422,7 +422,9 @@ async function main() {
 
   // la mappa si apre quando i livelli di base sono pronti; alberi e fauna possono proseguire dietro
   const treesSoon = Promise.race([firstTrees, sleep(14000)]), faunaSoon = Promise.race([pFauna, sleep(12000)]);
-  await Promise.all([pPop, pIdx, pParchi, pOrti, pGiard, pMon, treesSoon, faunaSoon]);
+  // residenti e indici arrivano solo dal portale del Comune, che a volte resta muto: oltre gli 8 s si apre comunque
+  const portaleSoon = Promise.race([Promise.all([pPop, pIdx]), sleep(8000)]);
+  await Promise.all([portaleSoon, pParchi, pOrti, pGiard, pMon, treesSoon, faunaSoon]);
   clearTimeout(hard); Loader.finish();
   setMode('none');
   setTimeout(() => locateMe(true), 1900); // dopo la chiusura della schermata di caricamento (START si preme da solo)

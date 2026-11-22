@@ -275,9 +275,9 @@ async function ckanUrl(p) {
   } catch (e) {}
   return {url: CFG.ckan + p.url, title: p.id, mod: ''};
 }
-/* Livelli del Comune. Alcuni hanno una copia nel sito (data/): i NIL perché il portale a volte li serve
-   senza CORS, i parchi perché il portale li manda non compressi (5 MB, contro 180 KB della copia).
-   localFirst: la copia è la prima scelta e il portale il ripiego; altrimenti il contrario. */
+/* Livelli del Comune. Tutti hanno una copia nel sito (data/), rinnovata una volta al mese da tools/copie_comune.py.
+   localFirst: la copia è la prima scelta e il portale il ripiego; altrimenti il contrario. La copia viene prima perché
+   il portale a volte accetta la connessione e poi tace per minuti (22/11/2026), bloccando l'avvio della pagina. */
 async function loadCkanGeo(key, label) {
   src(key, label, 'wait', 'Scarico…');
   const p = CFG.pkg[key];
@@ -286,7 +286,7 @@ async function loadCkanGeo(key, label) {
     return [gj, esc(u.title) + (u.mod ? ' · aggiornato al ' + u.mod.split('-').reverse().join('/') : '')];
   };
   const local = async () => {
-    const gj = await fetchJSON(p.local, {timeout: 30000}); if (!gj.features) throw new Error('formato inatteso');
+    const gj = await retry(() => fetchJSON(p.local, {timeout: 30000})); if (!gj.features) throw new Error('formato inatteso');
     const v = gj._aggiornato || p.localDate || ''; return [gj, 'copia nel sito del dataset del Comune (' + esc(p.id) + (v ? ', versione del ' + esc(v.split('-').reverse().join('/')) : '') + ')'];
   };
   const order = !p.local ? [portal] : p.localFirst ? [local, portal] : [portal, local], errs = [];
