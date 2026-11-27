@@ -15,6 +15,7 @@ Mappa interattiva di flora e fauna di Milano in stile pixel art anni '90. Un'uni
 | `src/e_ui.js` | Metriche per NIL, coropletica, classifica, incroci, pannello, geolocalizzazione, avvio |
 | `src/style.css`, `src/body.html` | Stile e struttura della pagina |
 | `build.py` | Concatena tutto in `index.html` |
+| `icons/` | Favicon (32 px), icona per la schermata Home di iPhone (180 px) e di Android (192 e 512 px, con `manifest.webmanifest`): il ciliegio della schermata di caricamento nella fase verde chiaro (`drawPlant` a 0,62) su fondo `--ink`, a scala intera |
 | `data/nil.geojson` | Copia dei confini dei NIL (ds964, PGT 2030, fermi al 2020). È la prima scelta; il portale è il ripiego |
 | `data/parchi.json` | Copia dei parchi e giardini (ds89, versione del 06/05/2024) con le sole colonne usate e coordinate al metro: 1,1 MB, 180 KB compressi, contro 5 MB non compressi dal portale. È la prima scelta; il portale è il ripiego. Da rigenerare se il Comune aggiorna il dataset |
 | `data/gbif_fauna.json` | Punti di fauna da GBIF: fino a 3.000 osservazioni eBird degli ultimi 3 anni (dataset EOD) e 600 per ciascuno dei due maggiori atlanti, con nomi italiani da iNaturalist. 53 KB compressi contro 1,5 MB per ogni 300 record chiesti dal vivo (GBIF non comprime). Generato da `tools/gbif_fauna.py` |

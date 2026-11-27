@@ -1,0 +1,21 @@
+{
+  "name": "FogliaMI · flora e fauna di Milano a 8 bit",
+  "short_name": "FogliaMI",
+  "start_url": "../",
+  "scope": "../",
+  "display": "browser",
+  "background_color": "#1b1c2e",
+  "theme_color": "#1b1c2e",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
